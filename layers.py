@@ -1,5 +1,6 @@
 import tensorflow as tf
 import numpy as np
+import ipdb
 
 def get_weights(shape, name, mask=None):
     weights_initializer = tf.contrib.layers.xavier_initializer()
@@ -22,7 +23,8 @@ def get_weights(shape, name, mask=None):
     return W
 
 def get_bias(shape, name):
-    return tf.get_variable(name, shape, tf.float32, tf.zeros_initializer)
+    zero_initializer = tf.zeros_initializer()
+    return tf.get_variable(name, shape, tf.float32, zero_initializer)# 
 
 def conv_op(x, W):
     return tf.nn.conv2d(x, W, strides=[1,1,1,1], padding='SAME')

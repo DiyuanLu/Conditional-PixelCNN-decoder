@@ -18,7 +18,7 @@ def train(conf, data):
     saver = tf.train.Saver(tf.trainable_variables())
 
     with tf.Session() as sess: 
-        sess.run(tf.initialize_all_variables())
+        sess.run(tf.global_variable_initializer())
         if os.path.exists(conf.ckpt_file):
             saver.restore(sess, conf.ckpt_file)
             print "Model Restored"
